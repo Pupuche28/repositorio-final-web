@@ -71,32 +71,32 @@
                             </li>
                             <li class="nav-item me-2">
                                 {% if current_user.is_authenticated %}
-                                    <!-- Si el usuario está autenticado, redirigir a Mis Pedidos -->
-                                    <a class="nav-link" href="{{ url_for('mispedidos_bp.mis_pedidos') }}">
-                                        <i class="fas fa-box" style="color: black;"></i>
-                                    </a>
+                                <!-- Si el usuario está autenticado, redirigir a Mis Pedidos -->
+                                <a class="nav-link" href="{{ url_for('mispedidos_bp.mis_pedidos') }}">
+                                    <i class="fas fa-box" style="color: black;"></i>
+                                </a>
                                 {% else %}
-                                    <!-- Si el usuario NO está autenticado, abrir el modal de login -->
-                                    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
-                                        <i class="fas fa-box" style="color: black;"></i>
-                                    </a>
+                                <!-- Si el usuario NO está autenticado, abrir el modal de login -->
+                                <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
+                                    <i class="fas fa-box" style="color: black;"></i>
+                                </a>
                                 {% endif %}
-                            </li>                           
+                            </li>
                             <ul class="navbar-nav">
                                 <li class="nav-item me-2">
                                     {% if current_user.is_authenticated %}
-                                        <!-- Si el usuario está autenticado, redirigir al carrito -->
-                                        <a class="nav-link" href="{{ url_for('carrito') }}">
-                                            <i class="fas fa-shopping-cart" style="color: black;"></i>
-                                        </a>
+                                    <!-- Si el usuario está autenticado, redirigir al carrito -->
+                                    <a class="nav-link" href="{{ url_for('carrito') }}">
+                                        <i class="fas fa-shopping-cart" style="color: black;"></i>
+                                    </a>
                                     {% else %}
-                                        <!-- Si el usuario NO está autenticado, abrir el modal de login -->
-                                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
-                                            <i class="fas fa-shopping-cart" style="color: black;"></i>
-                                        </a>
+                                    <!-- Si el usuario NO está autenticado, abrir el modal de login -->
+                                    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
+                                        <i class="fas fa-shopping-cart" style="color: black;"></i>
+                                    </a>
                                     {% endif %}
                                 </li>
-                            </ul>                            
+                            </ul>
                         </ul>
                         <ul class="navbar-nav me-5">
                             {% if current_user.is_authenticated %}
@@ -240,66 +240,74 @@
                 <!-- En Oferta -->
                 <div class="col-md-3">
                     <h3 class="mb-4" style="font-weight: 700;">En Oferta</h3>
-                    <div class="card mb-3" style="background-color: #FDE8BC; border: none; border-radius: 10px;">
-                        <div class="row ">
-                            <div class="col-4">
-                                <img src="{{ url_for('static', filename='img/enoferta1.webp') }}"
-                                    class="img-fluid rounded-start w-100" style="margin: 30%;">
-                            </div>
-
-                            <div class="col-8">
-                                <div class="card-body ms-2">
-                                    <h5 class="card-title">Cerámica</h5>
-                                    <p class="card-text">S/15.00</p>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
+                    <a href="{{ url_for('productodetalle', id_producto=3) }}" style="text-decoration: none;">
+                        <div class="card mb-3" style="background-color: #FDE8BC; border: none; border-radius: 10px;">
+                            <div class="row">
+                                <div class="col-4">
+                                    <img src="{{ url_for('static', filename='img/ceramica_circular.webp') }}"
+                                        class="img-fluid rounded-start w-100" style="margin: 30%; border-radius: 10px;"
+                                        draggable="false">
+                                </div>
+                                <div class="col-8">
+                                    <div class="card-body ms-2">
+                                        <h5 class="card-title">Cerámica Circular</h5>
+                                        <p class="card-text">S/25.00</p>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card mb-3" style="background-color: #FDE8BC; border: none; border-radius: 10px;">
-                        <div class="row">
-                            <div class="col-4">
-                                <img src="{{ url_for('static', filename='img/enoferta2.webp') }}"
-                                    class="img-fluid rounded-start w-100" style="margin: 30%;">
-                            </div>
+                    </a>
 
-                            <div class="col-8">
-                                <div class="card-body ms-2">
-                                    <h5 class="card-title">Toro Pucará</h5>
-                                    <p class="card-text">S/15.00</p>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
+                    <a href="{{ url_for('productodetalle', id_producto=2) }}" style="text-decoration: none;">
+                        <div class="card mb-3" style="background-color: #FDE8BC; border: none; border-radius: 10px;">
+                            <div class="row">
+                                <div class="col-4">
+                                    <img src="{{ url_for('static', filename='img/ceramica_flor.webp') }}"
+                                        class="img-fluid rounded-start w-100" style="margin: 30%; border-radius: 10px;"
+                                        draggable="false">
+                                </div>
+                                <div class="col-8">
+                                    <div class="card-body ms-2">
+                                        <h5 class="card-title">Cerámica Flor</h5>
+                                        <p class="card-text">S/30.00</p>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card mb-3" style="background-color: #FDE8BC; border: none; border-radius: 10px;">
-                        <div class="row">
-                            <div class="col-4">
-                                <img src="{{ url_for('static', filename='img/enoferta3.webp') }}"
-                                    class="img-fluid rounded-start w-100" style="margin: 30%;">
-                            </div>
+                    </a>
 
-                            <div class="col-8">
-                                <div class="card-body ms-2">
-                                    <h5 class="card-title">Candelabro</h5>
-                                    <p class="card-text">S/15.00</p>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
+                    <a href="{{ url_for('productodetalle', id_producto=3) }}" style="text-decoration: none;">
+                        <div class="card mb-3" style="background-color: #FDE8BC; border: none; border-radius: 10px;">
+                            <div class="row">
+                                <div class="col-4">
+                                    <img src="{{ url_for('static', filename='img/ceramica_portal.webp') }}"
+                                        class="img-fluid rounded-start w-100" style="margin: 30%; border-radius: 10px;"
+                                        draggable="false">
+                                </div>
+                                <div class="col-8">
+                                    <div class="card-body ms-2">
+                                        <h5 class="card-title">Cerámica Portal</h5>
+                                        <p class="card-text">S/35.00</p>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
 
                 <!-- Productos Destacados -->
@@ -309,15 +317,18 @@
                         <div class="row g-3 justify-content-center">
                             <div class="col-6 col-md-3">
                                 <div class="product-card p-5">
-                                    <img src="{{ url_for('static', filename='img/producD1.webp') }}" alt="Cerámica"
-                                        class="img-fluid mb-2" style="cursor: pointer;">
-                                    <h5>Cerámica</h5>
+                                    <a href="{{ url_for('productodetalle', id_producto=15) }}">
+                                        <img src="{{ url_for('static', filename='img/retablo_cosecha.webp') }}"
+                                            alt="Retablo Cosecha" class="img-fluid mb-2" style="border-radius: 10px;"
+                                            draggable="false">
+                                    </a>
+                                    <h5>Retablo Cosecha</h5>
                                     <div class="ratings mb-2">
                                         <p>★★★★★</p>
                                     </div>
-                                    <p class="text-decoration-line-through mb-0">S/45.00</p>
+                                    <p class="text-decoration-line-through mb-0">S/50.00</p>
                                     <div class="d-flex">
-                                        <span class="text-danger fw-bold me-2">S/15.00</span>
+                                        <span class="text-danger fw-bold me-2">S/30.00</span>
                                         <button class="btn btn-sm p-0 me-1"><i class="far fa-heart"></i></button>
                                         <button class="btn btn-sm p-0"><i class="fas fa-shopping-cart"></i></button>
                                     </div>
@@ -325,15 +336,18 @@
                             </div>
                             <div class="col-6 col-md-3">
                                 <div class="product-card p-5">
-                                    <img src="{{ url_for('static', filename='img/producD2.webp') }}"
-                                        alt="Nacimiento" class="img-fluid mb-2" style="cursor: pointer;">
-                                    <h5>Nacimiento</h5>
+                                    <a href="{{ url_for('productodetalle', id_producto=23) }}">
+                                        <img src="{{ url_for('static', filename='img/textil_poncho.webp') }}"
+                                            alt="Textil Chullo" class="img-fluid mb-2" style="border-radius: 10px;"
+                                            draggable="false">
+                                    </a>
+                                    <h5>Textil Chullo</h5>
                                     <div class="ratings mb-2">
                                         <p>★★★★★</p>
                                     </div>
-                                    <p class="text-decoration-line-through mb-0">S/45.00</p>
+                                    <p class="text-decoration-line-through mb-0">S/60.00</p>
                                     <div class="d-flex">
-                                        <span class="text-danger fw-bold me-2">S/15.00</span>
+                                        <span class="text-danger fw-bold me-2">S/35.00</span>
                                         <button class="btn btn-sm p-0 me-1"><i class="far fa-heart"></i></button>
                                         <button class="btn btn-sm p-0"><i class="fas fa-shopping-cart"></i></button>
                                     </div>
@@ -341,15 +355,18 @@
                             </div>
                             <div class="col-6 col-md-3">
                                 <div class="product-card p-5">
-                                    <img src="{{ url_for('static', filename='img/producD3.webp') }}" alt="Chanchito"
-                                        class="img-fluid mb-2" style="cursor: pointer;">
-                                    <h5>Chanchito</h5>
+                                    <a href="{{ url_for('productodetalle', id_producto=20) }}">
+                                        <img src="{{ url_for('static', filename='img/textil_lliclla.webp') }}"
+                                            alt="Textil Lliclla" class="img-fluid mb-2" style="border-radius: 10px;"
+                                            draggable="false">
+                                    </a>
+                                    <h5>Textil Lliclla</h5>
                                     <div class="ratings mb-2">
                                         <p>★★★★★</p>
                                     </div>
-                                    <p class="text-decoration-line-through mb-0">S/45.00</p>
+                                    <p class="text-decoration-line-through mb-0">S/70.00</p>
                                     <div class="d-flex">
-                                        <span class="text-danger fw-bold me-2">S/15.00</span>
+                                        <span class="text-danger fw-bold me-2">S/40.00</span>
                                         <button class="btn btn-sm p-0 me-1"><i class="far fa-heart"></i></button>
                                         <button class="btn btn-sm p-0"><i class="fas fa-shopping-cart"></i></button>
                                     </div>
@@ -357,15 +374,18 @@
                             </div>
                             <div class="col-6 col-md-3">
                                 <div class="product-card p-5">
-                                    <img src="{{ url_for('static', filename='img/producD4.webp') }}" alt="Retablo"
-                                        class="img-fluid mb-2" style="cursor: pointer;">
-                                    <h5>Retablo</h5>
+                                    <a href="{{ url_for('productodetalle', id_producto=13) }}">
+                                        <img src="{{ url_for('static', filename='img/retablo_fiesta.webp') }}"
+                                            alt="Retablo Fiesta" class="img-fluid mb-2" style="border-radius: 10px;"
+                                            draggable="false">
+                                    </a>
+                                    <h5>Retablo Fiesta</h5>
                                     <div class="ratings mb-2">
                                         <p>★★★★★</p>
                                     </div>
-                                    <p class="text-decoration-line-through mb-0">S/45.00</p>
+                                    <p class="text-decoration-line-through mb-0">S/90.00</p>
                                     <div class="d-flex">
-                                        <span class="text-danger fw-bold me-2">S/15.00</span>
+                                        <span class="text-danger fw-bold me-2">S/50.00</span>
                                         <button class="btn btn-sm p-0 me-1"><i class="far fa-heart"></i></button>
                                         <button class="btn btn-sm p-0"><i class="fas fa-shopping-cart"></i></button>
                                     </div>
@@ -374,207 +394,227 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <div>
-            <img src="{{ url_for('static', filename='img/background1.webp') }}" class="img-fluid mt-4 mb-4 w-100">
-        </div>
 
-        <!-- Producto Ilimitado -->
-        <div class="container-fluid producto-ilimitado" style="background-color: #FDE8BC; padding: 50px;">
-            <div class="row">
-                <div class="col-md-6">
-                    <img src="{{ url_for('static', filename='img/producIli.webp') }}" alt="Producto Ilimitado"
-                        class="producto-img" style="cursor: pointer;">
+
+                <div>
+                    <img src="{{ url_for('static', filename='img/background1.webp') }}"
+                        class="img-fluid mt-4 mb-4 w-100">
                 </div>
-                <div class="col-md-4">
-                    <h1 style="font-weight: 700;">PRODUCTO ILIMITADO</h1>
-                    <h2 style="font-size: 25px;">EVENTO INVIERNO</h2>
-                    <div id="timer" class="timer" style="font-weight: 700; font-size: 50px;">24 D 14 H 10 M 59 S</div>
-                    <button type="button"
-                        style="background-color: #FBD88F; border: none; border-radius: 15px; padding: 10px 20px;">
-                        <span class="m-3" style="font-weight: 700; color: black;">COMPRAR AHORA</span>
-                    </button>
+
+
+                <!-- Producto Ilimitado -->
+                <div class="container-fluid producto-ilimitado" style="background-color: #FDE8BC; padding: 50px;">
+                    <div class="row align-items-center">
+                        <!-- Imagen del producto -->
+                        <div class="col-md-6 text-center">
+                            <img src="{{ url_for('static', filename='img/joyeria_collar.webp') }}"
+                                alt="Producto Ilimitado" class="producto-img img-fluid"
+                                style="max-width: 70%; border-radius: 15px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);"
+                                draggable="false">
+                        </div>
+                        <!-- Información del producto -->
+                        <div class="col-md-4">
+                            <h1 style="font-weight: 700;">PRODUCTO ILIMITADO</h1>
+                            <h2 style="font-size: 25px;">EVENTO INVIERNO</h2>
+                            <div id="timer" class="timer" style="font-weight: 700; font-size: 50px;">24 D 14 H 10 M 59 S
+                            </div>
+                            <!-- Botón con redirección -->
+                            <a href="{{ url_for('productodetalle', id_producto=7) }}" style="text-decoration: none;">
+                                <button type="button"
+                                    style="background-color: #FBD88F; border: none; border-radius: 15px; padding: 10px 20px;">
+                                    <span class="m-3" style="font-weight: 700; color: black;">COMPRAR AHORA</span>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
 
 
-        <div>
-            <img src="{{ url_for('static', filename='img/background1.webp') }}" class="img-fluid mt-4 mb-4 w-100">
-        </div>
+                <div>
+                    <img src="{{ url_for('static', filename='img/background1.webp') }}"
+                        class="img-fluid mt-4 mb-4 w-100">
+                </div>
 
-        <!-- Datos Irrelevantes -->
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3">
-                    <a href="{{ url_for('nosotros') }}" style="text-decoration: none;">
-                        <div class="card card-custom" style="cursor: pointer;">
-                            <img src="{{ url_for('static', filename='img/imgArtesanos.webp') }}" class="card-img"
-                                alt="Artesanos" style="height: 100%;">
-                            <div class="card-img-overlay">
-                                <h5 class="card-title" style="font-weight: 700; color: inherit;">ARTESANOS</h5>
+                <!-- Datos Irrelevantes -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <a href="{{ url_for('nosotros') }}" style="text-decoration: none;">
+                                <div class="card card-custom" style="cursor: pointer;">
+                                    <img src="{{ url_for('static', filename='img/imgArtesanos.webp') }}"
+                                        class="card-img" alt="Artesanos" style="height: 100%;">
+                                    <div class="card-img-overlay">
+                                        <h5 class="card-title" style="font-weight: 700; color: inherit;">ARTESANOS</h5>
+                                    </div>
+                                </div>
+                            </a>
+
+                        </div>
+                        <div class="col-md-6">
+                            <a href="{{ url_for('nosotros') }}" style="text-decoration: none;">
+                                <div class="card card-custom" style="cursor: pointer;">
+                                    <img src="{{ url_for('static', filename='img/imgBlog.webp') }}" class="card-img"
+                                        alt="Blog" style="height: 100%;">
+                                    <div class="card-img-overlay">
+                                        <h5 class="card-title" style="font-weight: 700; color: inherit;">BLOG</h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="col-md-3">
+                            <a href="{{ url_for('nosotros') }}" style="text-decoration: none;">
+                                <div class="card card-custom" style="cursor: pointer;">
+                                    <img src="{{ url_for('static', filename='img/imgUbicaciones.webp') }}"
+                                        class="card-img" alt="Ubicaciones" style="height: 100%;">
+                                    <div class="card-img-overlay">
+                                        <h5 class="card-title" style="font-weight: 700; color: inherit;">UBICACIONES
+                                        </h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <img src="{{ url_for('static', filename='img/background1.webp') }}"
+                        class="img-fluid mt-4 mb-4 w-100">
+                </div>
+
+                <!-- Sección de características -->
+                <div class="container-fluid features-section">
+                    <div class="container">
+                        <div class="row text-center">
+                            <div class="col-md-2 feature">
+                                <img src="{{ url_for('static', filename='img/garantia.webp') }}"
+                                    alt="Garantía o Devoluciones">
+                                <h5>Garantía o Devoluciones</h5>
+                                <p>Devolución sin problemas,</p>
+                                <p>satisfacción garantizada.</p>
+                            </div>
+                            <div class="col-md-1 d-none d-md-block">
+                                <div class="feature-divider"></div>
+                            </div>
+                            <div class="col-md-2 feature">
+                                <img src="{{ url_for('static', filename='img/mejores.webp') }}"
+                                    alt="Los Mejores Precios">
+                                <h5>Los Mejores Precios</h5>
+                                <p>Precios bajos,</p>
+                                <p>calidad alta.</p>
+                            </div>
+                            <div class="col-md-1 d-none d-md-block">
+                                <div class="feature-divider"></div>
+                            </div>
+                            <div class="col-md-2 feature">
+                                <img src="{{ url_for('static', filename='img/pago seguro.webp') }}" alt="Pago Seguro">
+                                <h5>Pago Seguro</h5>
+                                <p>Compra seguro,</p>
+                                <p>datos protegidos.</p>
+                            </div>
+                            <div class="col-md-1 d-none d-md-block">
+                                <div class="feature-divider"></div>
+                            </div>
+                            <div class="col-md-2 feature">
+                                <img src="{{ url_for('static', filename='img/envios.webp') }}" alt="Envíos a todo Perú">
+                                <h5>Envíos a todo Perú</h5>
+                                <p>Recibe en casa,</p>
+                                <p>rápido y seguro.</p>
                             </div>
                         </div>
-                    </a>
-
+                    </div>
                 </div>
-                <div class="col-md-6">
-                    <a href="{{ url_for('nosotros') }}" style="text-decoration: none;">
-                        <div class="card card-custom" style="cursor: pointer;">
-                            <img src="{{ url_for('static', filename='img/imgBlog.webp') }}" class="card-img" alt="Blog"
-                                style="height: 100%;">
-                            <div class="card-img-overlay">
-                                <h5 class="card-title" style="font-weight: 700; color: inherit;">BLOG</h5>
+
+                <div>
+                    <img src="{{ url_for('static', filename='img/background1.webp') }}"
+                        class="img-fluid mt-4 mb-4 w-100">
+                </div>
+
+                <!-- Footer -->
+                <div class="footer">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h5>Tus pedidos</h5>
+                                <ul class="list-unstyled">
+                                    <li><a href="#" style="color: black; text-decoration: none;">Pedidos</a></li>
+                                    <li><a href="{{ url_for('cambios') }}"
+                                            style="color: black; text-decoration: none;">Envíos</a></li>
+                                    <li><a href="#" style="color: black; text-decoration: none;">Formas de pago</a></li>
+                                    <li><a href="{{ url_for('cambios') }}"
+                                            style="color: black; text-decoration: none;">Cambio y
+                                            devoluciones</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-3">
+                                <h5>Atención al cliente</h5>
+                                <ul class="list-unstyled">
+                                    <li><a href="{{ url_for('preguntas') }}"
+                                            style="color: black; text-decoration: none;">Preguntas frecuentes</a></li>
+                                    <li><a href="{{ url_for('contactos') }}"
+                                            style="color: black; text-decoration: none;">Contáctanos</a></li>
+                                    <li><img src="{{ url_for('static', filename='img/libro.webp') }}"
+                                            alt="Libro de Reclamaciones"></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-3">
+                                <h5>Acerca de</h5>
+                                <ul class="list-unstyled">
+                                    <li><a href="{{ url_for('nosotros') }}"
+                                            style="color: black; text-decoration: none;">Sobre
+                                            nosotros</a></li>
+                                    <li><a href="{{ url_for('legales') }}"
+                                            style="color: black; text-decoration: none;">Legales
+                                            generales</a></li>
+                                    <li><a href="{{ url_for('terminos') }}"
+                                            style="color: black; text-decoration: none;">Términos y condiciones</a></li>
+                                    <li><a href="{{ url_for('politicas') }}"
+                                            style="color: black; text-decoration: none;">Política de privacidad</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-3">
+                                <h5>Redes sociales</h5>
+                                <div class="social-icons">
+                                    <a href="#"><i class="fab fa-facebook"></i></a>
+                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                    <a href="#"><i class="fab fa-instagram"></i></a>
+                                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                                </div>
+                                <a href="{{ url_for('home') }}"><img
+                                        src="{{ url_for('static', filename='img/logo.webp') }}" alt="QORI PERU"
+                                        style="width: 200px; margin-top: 20px;"></a>
                             </div>
                         </div>
-                    </a>
+                    </div>
                 </div>
-
-                <div class="col-md-3">
-                    <a href="{{ url_for('nosotros') }}" style="text-decoration: none;">
-                        <div class="card card-custom" style="cursor: pointer;">
-                            <img src="{{ url_for('static', filename='img/imgUbicaciones.webp') }}" class="card-img"
-                                alt="Ubicaciones" style="height: 100%;">
-                            <div class="card-img-overlay">
-                                <h5 class="card-title" style="font-weight: 700; color: inherit;">UBICACIONES</h5>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div>
-            <img src="{{ url_for('static', filename='img/background1.webp') }}" class="img-fluid mt-4 mb-4 w-100">
-        </div>
-
-        <!-- Sección de características -->
-        <div class="container-fluid features-section">
-            <div class="container">
-                <div class="row text-center">
-                    <div class="col-md-2 feature">
-                        <img src="{{ url_for('static', filename='img/garantia.webp') }}" alt="Garantía o Devoluciones">
-                        <h5>Garantía o Devoluciones</h5>
-                        <p>Devolución sin problemas,</p>
-                        <p>satisfacción garantizada.</p>
-                    </div>
-                    <div class="col-md-1 d-none d-md-block">
-                        <div class="feature-divider"></div>
-                    </div>
-                    <div class="col-md-2 feature">
-                        <img src="{{ url_for('static', filename='img/mejores.webp') }}" alt="Los Mejores Precios">
-                        <h5>Los Mejores Precios</h5>
-                        <p>Precios bajos,</p>
-                        <p>calidad alta.</p>
-                    </div>
-                    <div class="col-md-1 d-none d-md-block">
-                        <div class="feature-divider"></div>
-                    </div>
-                    <div class="col-md-2 feature">
-                        <img src="{{ url_for('static', filename='img/pago seguro.webp') }}" alt="Pago Seguro">
-                        <h5>Pago Seguro</h5>
-                        <p>Compra seguro,</p>
-                        <p>datos protegidos.</p>
-                    </div>
-                    <div class="col-md-1 d-none d-md-block">
-                        <div class="feature-divider"></div>
-                    </div>
-                    <div class="col-md-2 feature">
-                        <img src="{{ url_for('static', filename='img/envios.webp') }}" alt="Envíos a todo Perú">
-                        <h5>Envíos a todo Perú</h5>
-                        <p>Recibe en casa,</p>
-                        <p>rápido y seguro.</p>
+                <div class="footer-bottom py-3">
+                    <div class="container">
+                        <p class="text-center mb-0">QORI PERÚ S.A.C 2024 - Todos los Derechos Reservados ©</p>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div>
-            <img src="{{ url_for('static', filename='img/background1.webp') }}" class="img-fluid mt-4 mb-4 w-100">
-        </div>
+            <!-- Scripts -->
+            <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script>
+            <script src="https://kit.fontawesome.com/79be0d4522.js" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+                crossorigin="anonymous"></script>
+            <script>
+                window.addEventListener('load', function () {
+                    const loadingScreen = document.getElementById('loading-screen');
+                    const mainContent = document.getElementById('main-content');
 
-        <!-- Footer -->
-        <div class="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3">
-                        <h5>Tus pedidos</h5>
-                        <ul class="list-unstyled">
-                            <li><a href="#" style="color: black; text-decoration: none;">Pedidos</a></li>
-                            <li><a href="{{ url_for('cambios') }}"
-                                    style="color: black; text-decoration: none;">Envíos</a></li>
-                            <li><a href="#" style="color: black; text-decoration: none;">Formas de pago</a></li>
-                            <li><a href="{{ url_for('cambios') }}" style="color: black; text-decoration: none;">Cambio y
-                                    devoluciones</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-3">
-                        <h5>Atención al cliente</h5>
-                        <ul class="list-unstyled">
-                            <li><a href="{{ url_for('preguntas') }}"
-                                    style="color: black; text-decoration: none;">Preguntas frecuentes</a></li>
-                            <li><a href="{{ url_for('contactos') }}"
-                                    style="color: black; text-decoration: none;">Contáctanos</a></li>
-                            <li><img src="{{ url_for('static', filename='img/libro.webp') }}"
-                                    alt="Libro de Reclamaciones"></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-3">
-                        <h5>Acerca de</h5>
-                        <ul class="list-unstyled">
-                            <li><a href="{{ url_for('nosotros') }}" style="color: black; text-decoration: none;">Sobre
-                                    nosotros</a></li>
-                            <li><a href="{{ url_for('legales') }}" style="color: black; text-decoration: none;">Legales
-                                    generales</a></li>
-                            <li><a href="{{ url_for('terminos') }}"
-                                    style="color: black; text-decoration: none;">Términos y condiciones</a></li>
-                            <li><a href="{{ url_for('politicas') }}"
-                                    style="color: black; text-decoration: none;">Política de privacidad</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-3">
-                        <h5>Redes sociales</h5>
-                        <div class="social-icons">
-                            <a href="#"><i class="fab fa-facebook"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-tiktok"></i></a>
-                        </div>
-                        <a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='img/logo.webp') }}"
-                                alt="QORI PERU" style="width: 200px; margin-top: 20px;"></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom py-3">
-            <div class="container">
-                <p class="text-center mb-0">QORI PERÚ S.A.C 2024 - Todos los Derechos Reservados ©</p>
-            </div>
-        </div>
-    </div>
+                    loadingScreen.classList.add('hidden');
 
-    <!-- Scripts -->
-    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script>
-    <script src="https://kit.fontawesome.com/79be0d4522.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
-    <script>
-        window.addEventListener('load', function () {
-            const loadingScreen = document.getElementById('loading-screen');
-            const mainContent = document.getElementById('main-content');
-
-            loadingScreen.classList.add('hidden');
-
-            loadingScreen.addEventListener('transitionend', function () {
-                mainContent.classList.add('visible');
-            });
-        });
-    </script>
+                    loadingScreen.addEventListener('transitionend', function () {
+                        mainContent.classList.add('visible');
+                    });
+                });
+            </script>
 </body>
 
 </html>
