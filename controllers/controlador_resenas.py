@@ -14,7 +14,6 @@ def obtener_todas_resenas():
     return resenas
 
 
-
 def obtener_resena_por_id(idResena):
     conexion = obtener_conexion()
     cursor = conexion.cursor()

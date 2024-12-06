@@ -14,6 +14,34 @@ def obtener_todas_tarjetas():
     conexion.close()
     return tarjetas
 
+def obtener_tarjeta_por_id(idTarjeta):
+    """
+    Obtiene una tarjeta específica por su ID.
+    """
+    conexion = obtener_conexion()
+    cursor = conexion.cursor()
+    cursor.execute("""
+        SELECT T.idTarjeta, T.nombre, T.nroTarjeta, T.fecha, U.nombres, T.idUsuario, 
+               T.fechaCreacion, T.fechaModificacion
+        FROM TARJETA T 
+        JOIN USUARIO U ON T.idUsuario = U.idUsuario
+        WHERE T.idTarjeta = %s
+    """, (idTarjeta,))
+    tarjeta = cursor.fetchone()
+    conexion.close()
+    
+    if tarjeta:
+        return {
+            "idTarjeta": tarjeta[0],
+            "nombre": tarjeta[1],
+            "nroTarjeta": tarjeta[2],
+            "fecha": tarjeta[3],
+            "usuario": tarjeta[4],
+            "idUsuario": tarjeta[5],
+            "fechaCreacion": tarjeta[6],
+            "fechaModificacion": tarjeta[7]
+        }
+    return None
 
 def agregar_tarjeta(nombre, nroTarjeta, fecha, idUsuario):
     conexion = obtener_conexion()

@@ -6,7 +6,7 @@ import hashlib
 
 # Clase Usuario que extiende de UserMixin para trabajar con Flask-Login
 class Usuario(UserMixin):
-    def __init__(self, id, nombres, apellidos, email, telefono, nroDocIde, direccion, idRol):
+    def __init__(self, id, nombres, apellidos, email, telefono, nroDocIde, direccion, idRol, contrasena=None):
         self.id = id
         self.nombres = nombres
         self.apellidos = apellidos
@@ -15,6 +15,8 @@ class Usuario(UserMixin):
         self.nroDocIde = nroDocIde
         self.direccion = direccion
         self.idRol = idRol
+        self.contrasena = contrasena  
+
 
 # Función para poder hashear la contraseña
 def hashear_contrasena(contrasena):
@@ -206,3 +208,38 @@ def agregar_usuario(nombres, apellidos, email, telefono, documento, direccion, r
         print(f"Error al agregar usuario: {str(e)}")
     finally:
         conexion.close()
+
+
+# Función para obtener un usuario por su email
+def obtener_usuario_por_email(email):
+    try:
+        conexion = obtener_conexion()
+        with conexion.cursor() as cursor:
+            sql = """
+                SELECT idUsuario, nombres, apellidos, email, telefono, nroDocIde, direccion, idRol, contrasena
+                FROM USUARIO
+                WHERE email = %s
+            """
+            cursor.execute(sql, (email,))
+            usuario_db = cursor.fetchone()
+
+        if usuario_db:
+            # Devuelve el objeto Usuario con todos los atributos, incluida la contraseña
+            return Usuario(
+                usuario_db[0],  # idUsuario
+                usuario_db[1],  # nombres
+                usuario_db[2],  # apellidos
+                usuario_db[3],  # email
+                usuario_db[4],  # telefono
+                usuario_db[5],  # nroDocIde
+                usuario_db[6],  # direccion
+                usuario_db[7],  # idRol
+                usuario_db[8]   # contrasena
+            )
+    except Exception as e:
+        print(f"Error al obtener usuario por email {email}: {str(e)}")
+        print(traceback.format_exc())
+    finally:
+        conexion.close()
+
+    return None
