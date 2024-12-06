@@ -1,7 +1,9 @@
 import os
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask import Blueprint, render_template, request, redirect, url_for, flash, jsonify
 from werkzeug.utils import secure_filename
 import controllers.controlador_productos as controlador_productos
+
+from flask_jwt_extended import jwt_required, get_jwt_identity
 
 # Crear el Blueprint para productos
 producto_bp = Blueprint('producto_bp', __name__)
@@ -104,7 +106,6 @@ def actualizar_producto():
     return redirect(url_for('producto_bp.menu_man_producto'))
 
 
-
 # Ruta para eliminar un producto
 @producto_bp.route('/eliminar_producto/<int:idProducto>', methods=["POST"])
 def eliminar_producto(idProducto):
@@ -115,3 +116,100 @@ def eliminar_producto(idProducto):
         flash(f"Error al eliminar producto: {str(e)}", "error")
     
     return redirect(url_for('producto_bp.menu_man_producto'))
+
+
+# ==========================
+# INICIO DE APIS PARA PRODUCTOS
+# ==========================
+
+# API para listar todos los productos
+@producto_bp.route("/api/listarProductos", methods=["GET"])
+@jwt_required()
+def listar_productos():
+    try:
+        productos = controlador_productos.obtener_todos_productos()
+        return jsonify({"data": productos, "message": "Productos obtenidos correctamente", "status": 1})
+    except Exception as e:
+        return jsonify({"data": [], "message": str(repr(e)), "status": -1})
+
+# API para listar un producto por ID
+@producto_bp.route("/api/listarProductoPorId/<int:idProducto>", methods=["GET"])
+@jwt_required()
+def listar_producto_por_id(idProducto):
+    try:
+        producto = controlador_productos.obtener_producto_por_id(idProducto)
+        if producto:
+            # Convertir los valores a un diccionario
+            producto_dict = {
+                "idProducto": producto[0],
+                "nombredeproducto": producto[1],
+                "autor": producto[2],
+                "precio": producto[3],
+                "descuento": producto[4],
+                "stock": producto[5],
+                "nombredeTienda": producto[6],
+                "descripcion": producto[7],
+                "caracteristicas": producto[8],
+                "idCategoria": producto[9],
+                "imagen": producto[10],
+                "fechaCreacion": producto[11],
+                "fechaModificacion": producto[12]
+            }
+            return jsonify({"data": producto_dict, "message": "Producto obtenido correctamente", "status": 1})
+        else:
+            return jsonify({"data": [], "message": "Producto no encontrado", "status": 0})
+    except Exception as e:
+        return jsonify({"data": [], "message": str(repr(e)), "status": -1})
+
+# API para insertar un nuevo producto desde JSON
+@producto_bp.route("/api/insertarProducto", methods=["POST"])
+@jwt_required()
+def insertar_producto_desde_json():
+    try:
+        data = request.json
+        nombredeproducto = data["nombredeproducto"]
+        autor = data["autor"]
+        precio = data["precio"]
+        descuento = data["descuento"]
+        stock = data["stock"]
+        nombredeTienda = data["nombredeTienda"]
+        descripcion = data["descripcion"]
+        caracteristicas = data["caracteristicas"]
+        idCategoria = data["idCategoria"]
+        imagen = data["imagen"]
+        
+        # Validación de datos
+        if not nombredeproducto or not autor or not precio or not stock or not nombredeTienda:
+            return jsonify({"data": [], "message": "Todos los campos son obligatorios", "status": 0})
+
+        controlador_productos.agregar_producto(nombredeproducto, autor, precio, descuento, stock, nombredeTienda, descripcion, caracteristicas, idCategoria, imagen)
+        return jsonify({"data": [], "message": "Producto registrado correctamente", "status": 1})
+    except Exception as e:
+        return jsonify({"data": [], "message": str(repr(e)), "status": -1})
+    
+
+# API para actualizar un producto
+@producto_bp.route("/api/actualizarProducto/<int:idProducto>", methods=["PUT"])
+@jwt_required()
+def actualizar_producto_ruta(idProducto):
+    try:
+        data = request.json
+        controlador_productos.actualizar_producto(
+            idProducto, data["nombredeproducto"], data["autor"], data["precio"], data["descuento"], 
+            data["stock"], data["nombredeTienda"], data["descripcion"], data["caracteristicas"], 
+            data["idCategoria"], data["imagen"]
+        )
+        return jsonify({"message": "Producto actualizado correctamente", "status": 1})
+    except Exception as e:
+        return jsonify({"message": str(repr(e)), "status": -1})
+
+
+# API para eliminar un producto
+@producto_bp.route("/api/eliminarProducto/<int:idProducto>", methods=["DELETE"])
+@jwt_required()
+def eliminar_producto_api(idProducto):
+    try:
+        controlador_productos.eliminar_producto(idProducto)
+        return jsonify({"message": f"Producto con ID {idProducto} eliminado correctamente", "status": 1})
+    except Exception as e:
+        return jsonify({"message": str(repr(e)), "status": -1})

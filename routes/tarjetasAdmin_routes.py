@@ -1,6 +1,8 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash, jsonify
 import controllers.controlador_tarjetasAdmin as controlador_tarjetas
 
+from flask_jwt_extended import jwt_required, get_jwt_identity
+
 # Crear el Blueprint para tarjetas bajo la nueva denominación tarjetaAdmin_bp
 tarjetaAdmin_bp = Blueprint('tarjetaAdmin_bp', __name__)
 
@@ -53,6 +55,7 @@ def eliminar_tarjeta(idTarjeta):
 
 # API para listar todas las tarjetas en formato JSON
 @tarjetaAdmin_bp.route("/api/listarTarjetas", methods=["GET"])
+@jwt_required()
 def listar_tarjetas():
     try:
         tarjetas = controlador_tarjetas.obtener_todas_tarjetas()
@@ -62,6 +65,7 @@ def listar_tarjetas():
 
 # API para listar una tarjeta por ID en formato JSON
 @tarjetaAdmin_bp.route("/api/listarTarjetaPorId/<int:idTarjeta>", methods=["GET"])
+@jwt_required()
 def listar_tarjeta_por_id(idTarjeta):
     try:
         tarjeta = controlador_tarjetas.obtener_tarjeta_por_id(idTarjeta)
@@ -74,6 +78,7 @@ def listar_tarjeta_por_id(idTarjeta):
 
 # API para agregar una nueva tarjeta
 @tarjetaAdmin_bp.route("/api/insertarTarjeta", methods=["POST"])
+@jwt_required()
 def insertar_tarjeta_api():
     try:
         data = request.json
@@ -90,6 +95,7 @@ def insertar_tarjeta_api():
 
 # API para actualizar una tarjeta
 @tarjetaAdmin_bp.route("/api/actualizarTarjeta/<int:idTarjeta>", methods=["PUT"])
+@jwt_required()
 def actualizar_tarjeta_api(idTarjeta):
     try:
         data = request.json
@@ -106,6 +112,7 @@ def actualizar_tarjeta_api(idTarjeta):
 
 # API para eliminar una tarjeta
 @tarjetaAdmin_bp.route("/api/eliminarTarjeta/<int:idTarjeta>", methods=["DELETE"])
+@jwt_required()
 def eliminar_tarjeta_api(idTarjeta):
     try:
         controlador_tarjetas.eliminar_tarjeta(idTarjeta)

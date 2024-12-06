@@ -1,6 +1,8 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash, jsonify
 import controllers.controlador_roles as controlador_roles  # Importa el controlador de roles
 
+from flask_jwt_extended import jwt_required, get_jwt_identity
+
 # Crear el Blueprint para roles
 rol_bp = Blueprint('rol_bp', __name__)
 
@@ -48,6 +50,7 @@ def eliminar_rol(idRol):
 
 # API para listar todos los roles en formato JSON
 @rol_bp.route("/api/listarRoles", methods=["GET"])
+@jwt_required()
 def listar_roles():
     try:
         roles = controlador_roles.obtener_roles()
@@ -57,6 +60,7 @@ def listar_roles():
 
 # API para listar un rol por ID en formato JSON
 @rol_bp.route("/api/listarRolPorId/<int:idRol>", methods=["GET"])
+@jwt_required()
 def listar_rol_por_id(idRol):
     try:
         rol = controlador_roles.obtener_rol_por_id(idRol)
@@ -69,6 +73,7 @@ def listar_rol_por_id(idRol):
 
 # API para agregar un nuevo rol
 @rol_bp.route("/api/insertarRol", methods=["POST"])
+@jwt_required()
 def insertar_rol():
     try:
         data = request.json
@@ -82,6 +87,7 @@ def insertar_rol():
 
 # API para actualizar un rol
 @rol_bp.route("/api/actualizarRol/<int:idRol>", methods=["PUT"])
+@jwt_required()
 def actualizar_rol_api(idRol):
     try:
         data = request.json
@@ -95,6 +101,7 @@ def actualizar_rol_api(idRol):
 
 # API para eliminar un rol
 @rol_bp.route("/api/eliminarRol/<int:idRol>", methods=["DELETE"])
+@jwt_required()
 def eliminar_rol_api(idRol):
     try:
         controlador_roles.eliminar_rol(idRol)

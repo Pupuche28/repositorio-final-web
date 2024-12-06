@@ -3,6 +3,9 @@ import controllers.controlador_usuarios as controlador_usuarios
 import controllers.controlador_resenas as controlador_resenas
 import traceback  # Importar traceback para manejo de errores detallado
 
+from flask_jwt_extended import jwt_required, get_jwt_identity
+
+
 # Crear el blueprint para usuario
 usuario_bp = Blueprint('usuario_bp', __name__)
 
@@ -105,6 +108,7 @@ def eliminar_administrador(idUsuario):
 
 # API para listar todos los usuarios en formato JSON
 @usuario_bp.route("/api/listarUsuarios", methods=["GET"])
+@jwt_required()
 def listar_usuarios():
     try:
         usuarios = controlador_usuarios.obtener_usuarios()
@@ -115,6 +119,7 @@ def listar_usuarios():
 
 # API para listar un usuario por ID en formato JSON
 @usuario_bp.route("/api/listarPorId/<int:idUsuario>", methods=["GET"])
+@jwt_required()
 def listar_usuario_por_id(idUsuario):
     try:
         usuario = controlador_usuarios.obtener_usuario_por_id(idUsuario)
@@ -139,6 +144,7 @@ def listar_usuario_por_id(idUsuario):
 
 # API para eliminar un usuario
 @usuario_bp.route("/api/eliminarUsuario/<int:idUsuario>", methods=["DELETE"])
+@jwt_required()
 def eliminar_usuario_api(idUsuario):
     try:
         controlador_usuarios.eliminar_usuario(idUsuario)
@@ -149,6 +155,7 @@ def eliminar_usuario_api(idUsuario):
 
 # API para actualizar un usuario
 @usuario_bp.route("/api/actualizarUsuario/<int:idUsuario>", methods=["PUT"])
+@jwt_required()
 def actualizar_usuario_ruta(idUsuario):
     try:
         data = request.json
@@ -164,6 +171,7 @@ def actualizar_usuario_ruta(idUsuario):
 
 # API para insertar usuario desde JSON
 @usuario_bp.route("/api/insertarUsuario", methods=["POST"])
+@jwt_required()
 def insertar_usuario_desde_json():
     try:
         nombres = request.json["nombres"]
